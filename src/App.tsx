@@ -29,8 +29,10 @@ import { InstructorAuthModal } from './components/InstructorAuthModal';
 import { RoleSelectionLanding } from './components/RoleSelectionLanding';
 import { InductionManualModal } from './components/InductionManualModal';
 import { FloatingVideoModal } from './components/FloatingVideoModal';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { MultilingualWriterModal } from './components/MultilingualWriterModal';
 
-export default function App() {
+function InductionApp() {
   // Role State (Instructor with admin privileges vs. Apprentice)
   const [userRole, setUserRole] = useState<UserRole>(() => {
     try {
@@ -545,6 +547,7 @@ export default function App() {
           isOpen={isVideoModalOpen}
           onClose={() => setIsVideoModalOpen(false)}
         />
+        <MultilingualWriterModal />
       </>
     );
   }
@@ -744,6 +747,8 @@ export default function App() {
         onClose={() => setIsVideoModalOpen(false)}
       />
 
+      <MultilingualWriterModal />
+
       {/* Footer (No-print) */}
       <footer className="no-print border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 mt-16 py-8 text-xs text-slate-500 dark:text-slate-400 transition-colors">
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -815,5 +820,13 @@ export default function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <InductionApp />
+    </LanguageProvider>
   );
 }

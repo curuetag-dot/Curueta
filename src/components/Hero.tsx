@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowRight, BookOpen, Award, CheckCircle, ShieldCheck, Clock } from 'lucide-react';
+import { ArrowRight, BookOpen, Award, ShieldCheck, CheckCircle, Clock } from 'lucide-react';
 import { ApprenticeProfile } from '../types/induction';
+import { useLanguage } from '../context/LanguageContext';
 
 interface HeroProps {
   apprentice: ApprenticeProfile;
@@ -31,6 +32,7 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenManual,
   isCertified,
 }) => {
+  const { t } = useLanguage();
   const [imgError, setImgError] = useState(false);
   const totalSteps = totalModules + totalCases + 1; // +1 for quiz
   const completedSteps = completedModulesCount + completedCasesCount + (quizScore !== null ? 1 : 0);
@@ -69,7 +71,7 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={onStartLearning}
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg transition-colors shadow-sm"
               >
-                <span>Explorar Módulos Normativos</span>
+                <span>{t('hero.exploreModules', 'Explorar Módulos Normativos')}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -78,7 +80,7 @@ export const Hero: React.FC<HeroProps> = ({
                 className="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-medium text-sm rounded-lg transition-colors border border-transparent dark:border-slate-700"
               >
                 <Award className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-                <span>Presentar Evaluación</span>
+                <span>{t('hero.takeQuiz', 'Presentar Evaluación')}</span>
               </button>
 
               {isCertified && (
@@ -87,7 +89,7 @@ export const Hero: React.FC<HeroProps> = ({
                   className="inline-flex items-center gap-2 px-4 py-2.5 border border-emerald-600 dark:border-emerald-500 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 font-semibold text-sm rounded-lg transition-colors"
                 >
                   <ShieldCheck className="w-4 h-4" />
-                  <span>Ver Certificado</span>
+                  <span>{t('hero.viewCertificate', 'Ver Certificado')}</span>
                 </button>
               )}
 
@@ -97,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({
                   className="inline-flex items-center gap-2 px-3.5 py-2.5 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium text-sm rounded-lg transition-colors"
                 >
                   <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <span>Instructivo</span>
+                  <span>{t('button.manual', 'Instructivo')}</span>
                 </button>
               )}
             </div>
@@ -105,17 +107,17 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Learner Info Card */}
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 text-xs text-slate-600 dark:text-slate-400 grid grid-cols-2 sm:grid-cols-3 gap-3">
               <div>
-                <div className="text-slate-400 dark:text-slate-500 font-medium mb-0.5">Programa</div>
+                <div className="text-slate-400 dark:text-slate-500 font-medium mb-0.5">{t('hero.program', 'Programa')}</div>
                 <div className="font-semibold text-slate-800 dark:text-slate-200 truncate" title={apprentice.trainingProgram}>
                   {apprentice.trainingProgram}
                 </div>
               </div>
               <div>
-                <div className="text-slate-400 dark:text-slate-500 font-medium mb-0.5">Ficha / Grupo</div>
+                <div className="text-slate-400 dark:text-slate-500 font-medium mb-0.5">{t('hero.batch', 'Ficha / Grupo')}</div>
                 <div className="font-semibold font-mono-num text-slate-800 dark:text-slate-200">{apprentice.groupCode}</div>
               </div>
               <div>
-                <div className="text-slate-400 dark:text-slate-500 font-medium mb-0.5">Regional</div>
+                <div className="text-slate-400 dark:text-slate-500 font-medium mb-0.5">{t('hero.regional', 'Regional')}</div>
                 <div className="font-semibold text-slate-800 dark:text-slate-200 truncate" title={apprentice.regional}>
                   {apprentice.regional}
                 </div>
