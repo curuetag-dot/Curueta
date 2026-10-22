@@ -1,0 +1,8 @@
+{
+  "name": "SENA Inducción Interactiva: Reglamento y Certificación del Aprendiz",
+  "description": "Plataforma formativa y gamificada de inducción del SENA para conocer el Reglamento del Aprendiz, resolver retos adaptativos y obtener el certificado oficial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
